@@ -1,3 +1,5 @@
-# This is where the entry point of your solution should be
+def main():
+    pass
 
-#add the menu
+if __name__ == "__main__":
+    main()
