@@ -43,7 +43,7 @@ def main():
             case '9':
                 print('Search Song By Lyrics')
             case '10':
-                print('Exit')
+                print('Thank you for using Mooziq! Have a nice day :)')
             case _:
                 print('Invalid Option')
 
