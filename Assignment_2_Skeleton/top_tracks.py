@@ -27,4 +27,3 @@ def get_top_tracks():
 
         print(f'- \'{name}\' has a popularity score of {popularity_rank}. {popularity_message}')
 
-get_top_tracks()
