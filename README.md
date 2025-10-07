@@ -1,3 +1,9 @@
+Helpful git functions: 
+git status 
+(checks which branch you are on and what changes you've made, whether you've committed, etc)
+git pull 
+(pull all the changes from the current branch)
+
 1. Create a new branch: git checkout -b <BRANCH_NAME>
 2. Make changes
 3. Push new branch to GitHub: git push -u origin <BRANCH_NAME>
