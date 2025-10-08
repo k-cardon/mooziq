@@ -1,12 +1,15 @@
+#task 3, Get Top Tracks By An Artist
+
+from task_1_artists import get_all_artists
+
 def get_top_tracks():
     import json
 
-    # TODO: connect to other function when its ready
-    # artists = get_all_artists()
-    # print(artists)
+    artists = get_all_artists()
+    print(artists)
 
-    # selected_artist = input('Please input the name of an artist: ')
-    # print(f'Listing top tracks for {selected_artist}: ')
+    selected_artist = input('Please input the name of an artist: ')
+    print(f'Listing top tracks for {selected_artist}: ')
 
     # TODO: implement json parsing of ./dataset/top_tracks
     with open('./dataset/top_tracks/0L8ExT028jH3ddEcZwqJJ5.json', 'r') as file:
