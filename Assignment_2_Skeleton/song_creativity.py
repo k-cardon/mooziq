@@ -1,3 +1,5 @@
+#task 6, Song Creativity Score
+
 import os 
 import json
 
@@ -14,14 +16,12 @@ def get_songs_with_lyrics():
     
     return songs_with_lyrics
 
-def analyze_song_lyrics(songs):
+def analyze_song_lyrics():
     
+    songs = get_songs_with_lyrics()
+
     print('Available songs:')
     for i in range(len(songs)):
         print(f'{i}: {songs[i]["title"]}')
 
     #TODO: implement lyrics analysis with regex
-
-songs = get_songs_with_lyrics()
-
-analyze_song_lyrics(songs)

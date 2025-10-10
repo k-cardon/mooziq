@@ -1,4 +1,6 @@
-from top_tracks import get_top_tracks
+from top_tracks import get_user_choice
+from task_1_artists import get_all_artists
+from song_creativity import analyze_song_lyrics
 
 def main():
     menu = """Welcome to Mooziq!
@@ -23,17 +25,17 @@ def main():
 
         match selection:
             case '1':
-                print('Get All Artists')
+                get_all_artists()
             case '2':
                 print('Get All Albums By An Artist')
             case '3':
-                get_top_tracks()
+                get_user_choice()
             case '4':
                 print('Export Artist Data')
             case '5':
                 print('Get Released Albums By Year')
             case '6':
-                print('Analyze Song Lyrics')
+                analyze_song_lyrics()
             case '7':
                 print('Calculate Longest Unique Word Sequence In A Song')
             case '8':

@@ -1,15 +1,43 @@
+#task 3, Get Top Tracks By An Artist
+
+import os
+import json
+from task_1_artists import get_all_artists
+
+#TODO: refactor because this is redundant from song_creativity.py?
 def get_top_tracks():
-    import json
+    contents = os.listdir('./dataset/top_tracks')
 
-    # TODO: connect to other function when its ready
-    # artists = get_all_artists()
-    # print(artists)
+    top_tracks = []
 
-    # selected_artist = input('Please input the name of an artist: ')
-    # print(f'Listing top tracks for {selected_artist}: ')
+    for i in range(len(contents)):
+        artist_id = contents[i]
+        with open(f'./dataset/top_tracks/{artist_id}', 'r') as file:
+            tracklist = json.load(file)
+            top_tracks.append(tracklist)
+    
+    return top_tracks
+
+
+def get_user_choice():
+    artists = get_all_artists()
+    all_top_tracks = get_top_tracks()
+    
+    #TODO: consider making this another function in Piyanont's file?
+    print('Artists found in the database:')
+    for artist in artists:
+        print(f"- {artist['name']}")
+
+    selected_artist = input('Please input the name of an artist: ')
+    
+    for artist in artists:
+        if artist['name'] == selected_artist.capitalize():
+            artist_id = artist["id"]
+
+    print(f'listing top tracks for {selected_artist}...')
 
     # TODO: implement json parsing of ./dataset/top_tracks
-    with open('./dataset/top_tracks/0L8ExT028jH3ddEcZwqJJ5.json', 'r') as file:
+    with open(f'./dataset/top_tracks/{artist_id}.json', 'r') as file:
         all_tracks = json.load(file)
         
     for track in all_tracks['tracks']:
@@ -25,5 +53,5 @@ def get_top_tracks():
             popularity_message = 'It is made for the charts!'
 
 
-        print(f'- \'{name}\' has a popularity score of {popularity_rank}. {popularity_message}')
+        print(f'- \"{name}\" has a popularity score of {popularity_rank}. {popularity_message}')
 
