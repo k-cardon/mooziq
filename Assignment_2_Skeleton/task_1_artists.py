@@ -6,6 +6,9 @@ import json
 import os
 
 def get_all_artists():
+    #TODO: consider making artists a dictionary with key ID instead of a list
+    #TODO: sort the files by name before processing them. You are allowed to use the Python functions sorted() or .sort() for this task.
+    
     artists = []
     folder = "dataset/artists"
 
@@ -18,6 +21,7 @@ def get_all_artists():
     
     return artists
 
+#TODO: make this a function
 all_artists = get_all_artists()
 
 print(f"Artists found in the database: ")

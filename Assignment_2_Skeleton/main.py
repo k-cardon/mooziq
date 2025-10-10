@@ -1,4 +1,4 @@
-from top_tracks import get_top_tracks
+from top_tracks import get_user_choice
 from task_1_artists import get_all_artists
 from song_creativity import analyze_song_lyrics
 
@@ -29,7 +29,7 @@ def main():
             case '2':
                 print('Get All Albums By An Artist')
             case '3':
-                get_top_tracks()
+                get_user_choice()
             case '4':
                 print('Export Artist Data')
             case '5':
