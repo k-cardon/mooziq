@@ -6,7 +6,7 @@ def get_all_artists():
 
     artists = {}
 
-    folder = "dataset/artists"
+    folder = "./dataset/artists"
     filenames = os.listdir(folder)
     filenames.sort()
 

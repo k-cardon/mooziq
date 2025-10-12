@@ -12,12 +12,18 @@ def get_user_choice():
         if artist['name'] == selected_artist.capitalize():
             artist_id = artist["id"]
 
-    print(f'listing top tracks for {selected_artist}...')
-
     with open(f'./dataset/top_tracks/{artist_id}.json', 'r') as file:
         all_tracks = json.load(file)
+    
+    return all_tracks
         
-    for track in all_tracks['tracks']:
+def show_top_tracks():
+
+    chosen_artist = get_user_choice()
+
+    print(f'listing top tracks for {chosen_artist["tracks"]["artists"]["name"]}...')
+    
+    for track in chosen_artist['tracks']:
         name = track['name']
         popularity_rank = track['popularity']
         if popularity_rank <= 30:
@@ -31,3 +37,5 @@ def get_user_choice():
 
 
         print(f'- \"{name}\" has a popularity score of {popularity_rank}. {popularity_message}')
+
+show_top_tracks()
