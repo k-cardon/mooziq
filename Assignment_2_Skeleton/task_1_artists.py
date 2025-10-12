@@ -30,5 +30,3 @@ def show_artists():
     for artist_id, artist in all_artists.items():
         print(f"- {artist['name']}")
 
-if __name__ == "__main__":
-    show_artists()
