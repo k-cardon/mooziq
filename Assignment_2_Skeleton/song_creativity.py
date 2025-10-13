@@ -15,10 +15,6 @@ def get_songs_with_lyrics():
             song = json.load(file)
             songs_with_lyrics.append(song)
     
-    print('Available songs:')
-    for i in range(len(songs_with_lyrics)):
-        print(f'{i}: {songs_with_lyrics[i]["title"]}')
-    
     return songs_with_lyrics
 
 def analyze_song_lyrics():
@@ -39,6 +35,10 @@ def analyze_song_lyrics():
     
     os.makedirs(r'./moosified', exist_ok=True)
     songs = get_songs_with_lyrics()
+
+    print('Available songs:')
+    for i in range(len(songs)):
+        print(f'{i}: {songs[i]["title"]}')
     
     selection = int(input('Choose a song: '))
     chosen_song = songs[selection]['lyrics']
