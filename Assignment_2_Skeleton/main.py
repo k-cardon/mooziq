@@ -1,5 +1,5 @@
-from top_tracks import get_user_choice
-from task_1_artists import get_all_artists
+from top_tracks import show_top_tracks
+from task_1_artists import show_artists
 from song_creativity import analyze_song_lyrics
 
 def main():
@@ -25,11 +25,11 @@ def main():
 
         match selection:
             case '1':
-                get_all_artists()
+                show_artists()
             case '2':
                 print('Get All Albums By An Artist')
             case '3':
-                get_user_choice()
+                show_top_tracks()
             case '4':
                 print('Export Artist Data')
             case '5':
