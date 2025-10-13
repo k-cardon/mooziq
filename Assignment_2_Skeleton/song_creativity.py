@@ -15,19 +15,36 @@ def get_songs_with_lyrics():
             song = json.load(file)
             songs_with_lyrics.append(song)
     
+    print('Available songs:')
+    for i in range(len(songs_with_lyrics)):
+        print(f'{i}: {songs_with_lyrics[i]["title"]}')
+    
     return songs_with_lyrics
 
 def analyze_song_lyrics():
-    
-    songs = get_songs_with_lyrics()
 
-    print('Available songs:')
-    for i in range(len(songs)):
-        print(f'{i}: {songs[i]["title"]}')
+    moose = """
+ ___            ___
+/   \          /   \\
+\_   \        /  __/
+ _\   \      /  /__
+ \___  \____/   __/
+     \_       _/
+       | @ @  \__
+       |
+     _/     /\\
+    /o)  (o/\ \__
+    \_____/ /
+      \____/"""
+    
+    os.makedirs(r'./moosified', exist_ok=True)
+    songs = get_songs_with_lyrics()
     
     selection = int(input('Choose a song: '))
     chosen_song = songs[selection]['lyrics']
     title = songs[selection]['title']
+    artist = songs[selection]['artist']
+    save_location = f'./moosified/{title} Moosified.txt'
 
     pattern_1 = r"mo"
     pattern_2 = r"\w*\?"
@@ -38,10 +55,10 @@ def analyze_song_lyrics():
     new_lyrics_3 = re.sub(pattern_3, 'moo!', new_lyrics_2)
 
     if new_lyrics_3 == chosen_song:
-        print(f'{title} is not moose-compatible!')
+        print(f'{title} by {artist} is not moose-compatible!')
     else:
-        with open(f'./moosified/{title} Moosified.txt', 'w', encoding='utf-8') as file:
+        with open(save_location, 'w', encoding='utf-8') as file:
             file.write(new_lyrics_3)
-        print(f'{title} has been moos-ified!')
+        print(f'{title} by {artist} has been moos-ified!')
+        print(f'file saved at {save_location}{moose}')
 
-analyze_song_lyrics()
