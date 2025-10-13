@@ -1,5 +1,5 @@
 Helpful git functions: <br>
-`git status` : checks which branch you are on and what changes you've made, whether you've committed, etc <br>
+`git status` : checks which branch you are on, new changes, current commits, etc <br>
 `git pull` : pull all the changes from the current branch <br>
 
 1. Create a new branch: `git checkout -b <BRANCH_NAME>`
