@@ -6,14 +6,18 @@ import re
 
 def get_songs_with_lyrics():
     contents = os.listdir('./dataset/songs/')
+    contents.sort()
 
     songs_with_lyrics = []
+
+    print('Available songs:')
 
     for i in range(len(contents)):
         filename = contents[i]
         with open(f'./dataset/songs/{filename}', 'r') as file:
             song = json.load(file)
             songs_with_lyrics.append(song)
+            print(f'{i + 1}: {song["title"]}')
     
     return songs_with_lyrics
 
@@ -36,11 +40,7 @@ def analyze_song_lyrics():
     os.makedirs(r'./moosified', exist_ok=True)
     songs = get_songs_with_lyrics()
 
-    print('Available songs:')
-    for i in range(len(songs)):
-        print(f'{i}: {songs[i]["title"]}')
-    
-    selection = int(input('Choose a song: '))
+    selection = int(input('Choose a song: ')) - 1
     chosen_song = songs[selection]['lyrics']
     title = songs[selection]['title']
     artist = songs[selection]['artist']
