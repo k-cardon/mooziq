@@ -47,8 +47,6 @@ def analyze_song_lyrics():
     artist = songs[selection]['artist']
     save_location = f'./moosified/{title} Moosified.txt'
 
-    
-
     pattern_1 = r"mo"
     pattern_2 = r"\w*\?"
     pattern_3 = r"\w*!"
