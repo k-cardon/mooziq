@@ -1,6 +1,7 @@
 from top_tracks import show_top_tracks
 from task_1_artists import show_artists
 from song_creativity import analyze_song_lyrics
+from lyrics_search import search_lyrics
 
 def main():
     menu = """Welcome to Mooziq!
@@ -41,7 +42,7 @@ def main():
             case '8':
                 print('Weather Forecast For Upcoming Concerts')
             case '9':
-                print('Search Song By Lyrics')
+                search_lyrics()
             case '10':
                 print('Thank you for using Mooziq! Have a nice day :)')
             case _:
