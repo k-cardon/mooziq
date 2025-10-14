@@ -1,5 +1,5 @@
 Command line functions: <br>
-`cd` : choose directory (.. for parent folder, <FOLDER_NAME> for child folder) <br>
+`cd` : choose directory (`..` for parent folder, `<FOLDER_NAME>` for child folder) <br>
 `ls` : list files in current directory <br>
 `code <FILE_NAME>` : open chosen file in code editor <br>
 
