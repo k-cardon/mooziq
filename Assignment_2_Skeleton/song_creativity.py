@@ -6,6 +6,7 @@ import re
 
 def get_songs_with_lyrics():
     contents = os.listdir('./dataset/songs/')
+    contents.sort()
 
     songs_with_lyrics = []
 
@@ -38,9 +39,9 @@ def analyze_song_lyrics():
 
     print('Available songs:')
     for i in range(len(songs)):
-        print(f'{i}: {songs[i]["title"]}')
-    
-    selection = int(input('Choose a song: '))
+        print(f'{i + 1}: {songs[i]["title"]}')
+
+    selection = int(input('Choose a song: ')) - 1
     chosen_song = songs[selection]['lyrics']
     title = songs[selection]['title']
     artist = songs[selection]['artist']
