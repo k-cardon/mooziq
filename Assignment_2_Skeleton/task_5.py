@@ -1,32 +1,49 @@
 from task_2 import get_all_albums, convert_to_date, get_album_artists, format_album_date
 
+
 def sort_albums_by_name(albums_list):
     albums_list.sort(key=lambda album: album["name"])
     return albums_list
 
-def list_albums_by_year():
-    year_input = input("Please enter a year: ").strip()
-    if not year_input.isdigit():
-        print("Invalid year.")
-        return
-    year = int(year_input)
 
-    all_albums = get_all_albums()
-    albums_in_year = []
+def enter_year():
+    try:
+        year = int(input("Please enter a year: ").strip())
+        return year
+    except ValueError:
+        print("Invalid year.")
+        return None
+
+
+def filter_album(all_albums, year):
+    albums = []
 
     for album in all_albums.values():
-        date_string = album.get("release_date")
+        release_date = album.get("release_date")
         release_precision = album.get("release_date_precision", "day")
-        album_date = convert_to_date(date_string, release_precision)
+        album_date = convert_to_date(release_date, release_precision)
         if album_date and album_date.year == year:
-            albums_in_year.append(album)
+            albums.append(album)
 
-    albums_in_year = sort_albums_by_name(albums_in_year)
+    return albums
 
-    print(f"\nAlbums released in the year: {year}")
-    for album in albums_in_year:
+
+def display_album_year(albums, year):
+    print(f"\nAlbums released in the year {year}:")
+    for album in albums:
         artist_names = get_album_artists(album)
-        formatted_date = format_album_date(album)
         print(f'- "{album["name"]}" by {", ".join(artist_names)}')
 
-list_albums_by_year()
+
+def list_album_year():
+    year = enter_year()
+    if year is None:
+        return
+
+    all_albums = get_all_albums()
+    albums = filter_album(all_albums, year)
+    albums = sort_albums_by_name(albums)
+    display_album_year(albums, year)
+
+
+list_album_year()

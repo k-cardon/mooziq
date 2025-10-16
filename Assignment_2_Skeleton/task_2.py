@@ -11,9 +11,9 @@ def suffix(number):
     return f"{number}{suffix_map.get(last_digit, 'th')}"
 
 def convert_to_date(date_string, release_precision):
-    fmt = {"day": "%Y-%m-%d", "month": "%Y-%m", "year": "%Y"}.get(release_precision)
+    format = {"day": "%Y-%m-%d", "month": "%Y-%m", "year": "%Y"}.get(release_precision)
     try:
-        return datetime.strptime(date_string, fmt)
+        return datetime.strptime(date_string, format)
     except Exception:
         return None
 
@@ -57,38 +57,44 @@ def sort_albums_by_date(albums_list):
     album.get("release_date_precision", "day")), reverse=True)
     return albums_list
 
-def show_albums(artist_name):
+def artist_by_name(artist_name):
     all_artists = get_all_artists()
-    artist_found = None
     for artist in all_artists.values():
         if artist.get("name", "").lower() == artist_name.lower():
-            artist_found = artist
-    if not artist_found:
-        print(f"No artist named '{artist_name}'")
-        return
+            return artist
+    return None
 
-    artist_id = artist_found.get("id")
+def albums_by_artist_id(artist_id):
     all_albums = get_all_albums()
     artist_albums = []
-
     for album in all_albums.values():
-        album_artist_ids = []
-        for album_artist in album.get("artists", []):
-            album_artist_ids.append(album_artist.get("id", ""))
+        album_artist_ids = [a.get("id", "") for a in album.get("artists", [])]
         if artist_id in album_artist_ids:
             artist_albums.append(album)
+    return artist_albums
 
-    sorted_albums = sort_albums_by_date(artist_albums)
-
+def display_albums(artist_name, albums):
+    if not albums:
+        print(f"\nNo albums found for {artist_name}.")
+        return
+    sorted_albums = sort_albums_by_date(albums)
     print(f"\nAlbums by {artist_name}:")
     for album in sorted_albums:
         formatted_date = format_album_date(album)
-        artist_names = get_album_artists(album)
         print(f'- "{album["name"]}" released on {formatted_date}')
+
+def show_albums(artist_name):
+    artist = artist_by_name(artist_name)
+    if not artist:
+        print(f"No artist named '{artist_name}'")
+        return
+    artist_id = artist.get("id")
+    albums = albums_by_artist_id(artist_id)
+    display_albums(artist_name, albums)
 
 def album_by_artist():
     show_artists()
-    name = input("\nEnter artist name: ").strip()
+    name = input("Enter artist name: ").strip()
     show_albums(name)
 
 album_by_artist()
