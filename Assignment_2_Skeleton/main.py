@@ -10,9 +10,7 @@ from task_5 import list_album_year
 #reorganize the functions to that they are importing json in the same file, for example, to prevent repeeat imports
 
 def main():
-    menu = """Welcome to Mooziq!
-    Choose one of the options bellow:
-
+    menu = """
     1. Get All Artists
     2. Get All Albums By An Artist
     3. Get Top Tracks By An Artist
@@ -24,6 +22,8 @@ def main():
     9. Search Song By Lyrics
     10. Exit 
     """
+    print(f"Welcome to Mooziq! Choose one of the options bellow:")
+    
     selection = ''
 
     while selection != '10':   
