@@ -78,7 +78,7 @@ def display_albums(artist_name, albums):
         print(f"\nNo albums found for {artist_name}.")
         return
     sorted_albums = sort_albums_by_date(albums)
-    print(f"\nListing all available albums by {artist_name}...:")
+    print(f"\nListing all available albums from {artist_name.capitalize()}...:")
     for album in sorted_albums:
         formatted_date = format_album_date(album)
         print(f'- "{album["name"]}" was released in {formatted_date}.')
