@@ -19,7 +19,7 @@ def convert_to_date(date_string, release_precision):
 
 def get_all_albums():
     albums = {}
-    folder = "E:/Python Project/mooziq/Assignment_2_Skeleton/dataset/albums"
+    folder = "./dataset/albums"
     filenames = sorted(os.listdir(folder))
     for current_album in filenames:
         if current_album.endswith(".json"):
@@ -78,10 +78,10 @@ def display_albums(artist_name, albums):
         print(f"\nNo albums found for {artist_name}.")
         return
     sorted_albums = sort_albums_by_date(albums)
-    print(f"\nAlbums by {artist_name}:")
+    print(f"\nListing all available albums by {artist_name}...:")
     for album in sorted_albums:
         formatted_date = format_album_date(album)
-        print(f'- "{album["name"]}" released on {formatted_date}')
+        print(f'- "{album["name"]}" was released in {formatted_date}.')
 
 def show_albums(artist_name):
     artist = artist_by_name(artist_name)
@@ -96,5 +96,3 @@ def album_by_artist():
     show_artists()
     name = input("Enter artist name: ").strip()
     show_albums(name)
-
-album_by_artist()

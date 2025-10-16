@@ -2,6 +2,12 @@ from top_tracks import show_top_tracks
 from task_1_artists import show_artists
 from song_creativity import analyze_song_lyrics
 from lyrics_search import search_lyrics
+from longest_sequence import find_longest_sequence
+from task_2 import album_by_artist
+from task_5 import list_album_year
+
+#add all our files to a folder, then import all the files in a single line with wildcard?
+#reorganize the functions to that they are importing json in the same file, for example, to prevent repeeat imports
 
 def main():
     menu = """Welcome to Mooziq!
@@ -28,17 +34,17 @@ def main():
             case '1':
                 show_artists()
             case '2':
-                print('Get All Albums By An Artist')
+                album_by_artist()
             case '3':
                 show_top_tracks()
             case '4':
                 print('Export Artist Data')
             case '5':
-                print('Get Released Albums By Year')
+                list_album_year()
             case '6':
                 analyze_song_lyrics()
             case '7':
-                print('Calculate Longest Unique Word Sequence In A Song')
+                find_longest_sequence()
             case '8':
                 print('Weather Forecast For Upcoming Concerts')
             case '9':

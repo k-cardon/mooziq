@@ -32,7 +32,7 @@ def display_album_year(albums, year):
     print(f"\nAlbums released in the year {year}:")
     for album in albums:
         artist_names = get_album_artists(album)
-        print(f'- "{album["name"]}" by {", ".join(artist_names)}')
+        print(f'- "{album["name"]}" by {", ".join(artist_names)}.')
 
 
 def list_album_year():
@@ -44,6 +44,3 @@ def list_album_year():
     albums = filter_album(all_albums, year)
     albums = sort_albums_by_name(albums)
     display_album_year(albums, year)
-
-
-list_album_year()
