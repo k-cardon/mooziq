@@ -35,11 +35,11 @@ def get_all_albums():
 def get_album_artists(album):
     artist_names = []
     for album_artist in album.get("artists", []):
-        artist_names.append(album_artist.get("name", ""))
+        artist_names.append(album_artist.get("name"))
     return artist_names
 
 def format_album_date(album):
-    date_string = album["release_date"]
+    date_string = album.get("release_date")
     release_precision = album.get("release_date_precision", "day")
     album_date = convert_to_date(date_string, release_precision)
     if album_date:
@@ -68,17 +68,17 @@ def albums_by_artist_id(artist_id):
     all_albums = get_all_albums()
     artist_albums = []
     for album in all_albums.values():
-        album_artist_ids = [a.get("id", "") for a in album.get("artists", [])]
+        album_artist_ids = [a.get("id") for a in album.get("artists", [])]
         if artist_id in album_artist_ids:
             artist_albums.append(album)
     return artist_albums
 
 def display_albums(artist_name, albums):
     if not albums:
-        print(f"\nNo albums found for {artist_name}.")
+        print(f"No albums found for {artist_name}.")
         return
     sorted_albums = sort_albums_by_date(albums)
-    print(f"\nAlbums by {artist_name}:")
+    print(f"Albums by {artist_name}:")
     for album in sorted_albums:
         formatted_date = format_album_date(album)
         print(f'- "{album["name"]}" released on {formatted_date}')
