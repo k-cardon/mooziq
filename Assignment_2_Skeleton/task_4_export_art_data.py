@@ -47,12 +47,11 @@ def export_artists():
             writer = csv.writer(file)
             writer.writerow(["artist_id", "artist_name", "number_of_albums", "top_track_1", "top_track_2", "genres"])
 
-    if os.path.exists(csv_filepath):
-        with open(csv_filepath, "r", encoding="utf-8") as file:
-            reader = csv.reader(file)
-            for row in reader:
-                artists_csv[counter] = row[1]
-                counter += 1
+    with open(csv_filepath, "r", encoding="utf-8") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            artists_csv[counter] = row[1]
+            counter += 1
 
     for artist_id, artist in show_all_artists.items():
             print(f"- {artist['name']}")
@@ -105,4 +104,5 @@ def export_artists():
                         if file.tell() == 0:
                             writer.writerow(['artist_id', 'artist_name', 'number_of_albums', 'top_track_1', 'top_track_2', 'genres'])
                         writer.writerows(csv_data)     
+
 
