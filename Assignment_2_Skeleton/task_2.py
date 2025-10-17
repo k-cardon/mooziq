@@ -3,6 +3,7 @@ import json
 from datetime import datetime
 from task_1_artists import get_all_artists, show_artists
 
+
 def suffix(number):
     if 10 <= number % 100 <= 20:
         return f"{number}th"
@@ -10,12 +11,15 @@ def suffix(number):
     suffix_map = {1: "st", 2: "nd", 3: "rd"}
     return f"{number}{suffix_map.get(last_digit, 'th')}"
 
+
 def convert_to_date(date_string, release_precision):
-    format = {"day": "%Y-%m-%d", "month": "%Y-%m", "year": "%Y"}.get(release_precision)
+    format = {"day": "%Y-%m-%d", "month": "%Y-%m",
+              "year": "%Y"}.get(release_precision)
     try:
         return datetime.strptime(date_string, format)
     except Exception:
         return None
+
 
 def get_all_albums():
     albums = {}
@@ -32,11 +36,13 @@ def get_all_albums():
                         albums[album_id] = album_item
     return albums
 
+
 def get_album_artists(album):
     artist_names = []
     for album_artist in album.get("artists", []):
         artist_names.append(album_artist.get("name", ""))
     return artist_names
+
 
 def format_album_date(album):
     date_string = album["release_date"]
@@ -52,10 +58,6 @@ def format_album_date(album):
     else:
         return date_string
 
-def sort_albums_by_date(albums_list):
-    albums_list.sort(key=lambda album: convert_to_date(album["release_date"], 
-    album.get("release_date_precision", "day")), reverse=True)
-    return albums_list
 
 def artist_by_name(artist_name):
     all_artists = get_all_artists()
@@ -63,6 +65,7 @@ def artist_by_name(artist_name):
         if artist.get("name", "").lower() == artist_name.lower():
             return artist
     return None
+
 
 def albums_by_artist_id(artist_id):
     all_albums = get_all_albums()
@@ -73,15 +76,16 @@ def albums_by_artist_id(artist_id):
             artist_albums.append(album)
     return artist_albums
 
+
 def display_albums(artist_name, albums):
     if not albums:
         print(f"\nNo albums found for {artist_name}.")
         return
-    sorted_albums = sort_albums_by_date(albums)
-    print(f"\nListing all available albums from {artist_name}...:")
-    for album in sorted_albums:
+    print(f'\nListing all available albums from {artist_name}...')
+    for album in albums:
         formatted_date = format_album_date(album)
         print(f'- "{album["name"]}" was released in {formatted_date}.')
+
 
 def show_albums(artist_name):
     artist = artist_by_name(artist_name)
@@ -90,11 +94,10 @@ def show_albums(artist_name):
         return
     artist_id = artist.get("id")
     albums = albums_by_artist_id(artist_id)
-    display_albums(artist_name, albums)
+    display_albums(artist.get("name"), albums)
+
 
 def album_by_artist():
     show_artists()
     name = input("Enter artist name: ").strip()
     show_albums(name)
-
-album_by_artist()
