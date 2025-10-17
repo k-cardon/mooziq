@@ -44,7 +44,7 @@ def main():
             case '6':
                 analyze_song_lyrics()
             case '7':
-                find_longest_sequence()
+                # find_longest_sequence()
             case '8':
                 print('Weather Forecast For Upcoming Concerts')
             case '9':
