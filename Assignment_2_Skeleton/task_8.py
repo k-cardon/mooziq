@@ -25,7 +25,7 @@ def read_weather():
 
 
 def read_concerts():
-    concerts_file = "E:\\Python Project\\mooziq\\Assignment_2_Skeleton\\dataset\\concerts\\concerts.csv"
+    concerts_file = "./dataset/concerts/concerts.csv"
     concerts = []
     with open(concerts_file, encoding="utf-8") as file:
         reader = csv.DictReader(file)
@@ -44,26 +44,26 @@ def read_concerts():
 
 
 def get_weather_recommendation(min_temp, precipitation, wind_speed):
-    recs = []
+    recommendation = []
     try:
         if min_temp <= 10:
-            recs.append("Wear warm clothes")
+            recommendation.append("Wear warm clothes")
         if precipitation >= 2.3:
-            recs.append("Bring an umbrella" if wind_speed <
+            recommendation.append("Bring an umbrella" if wind_speed <
                         15 else "Bring a raincoat")
         if min_temp > 10 and precipitation < 2.3:
-            recs.append("Perfect weather")
+            recommendation.append("Perfect weather")
     except Exception:
-        recs.append("Weather data not available")
-    return ". ".join(recs) + "."
+        recommendation.append("Weather data not available")
+    return ". ".join(recommendation) + "."
 
 
 def filter_artist_concerts(concerts, artist_id):
     result = []
-    for c in concerts:
+    for concert in concerts:
         try:
-            if artist_id and c['artist'].lower() == artist_id['name'].lower():
-                result.append(c)
+            if artist_id and concert['artist'].lower() == artist_id['name'].lower():
+                result.append(concert)
         except Exception:
             continue
     return result
@@ -71,19 +71,19 @@ def filter_artist_concerts(concerts, artist_id):
 
 def format_concert_output(concert, weather_data):
     key = (concert['city_code'], concert['date'].date())
-    w = weather_data.get(key)
+    weather = weather_data.get(key)
     try:
-        if w:
-            rec = get_weather_recommendation(
-                w['min_temp'], w['precipitation'], w['wind_speed'])
-            city_name = w['city_name']
+        if weather:
+            recommendation = get_weather_recommendation(
+                weather['min_temp'], weather['precipitation'], weather['wind_speed'])
+            city_name = weather['city_name']
         else:
-            rec = "Weather data not available."
+            recommendation = "Weather data not available."
             city_name = concert['city_code']
     except Exception:
-        rec = "Weather data not available."
+        recommendation = "Weather data not available."
         city_name = concert['city_code']
-    return f"- {city_name}, {concert['date'].strftime('%B')} {suffix(concert['date'].day)} {concert['date'].year}. {rec}"
+    return f"- {city_name}, {concert['date'].strftime('%B')} {suffix(concert['date'].day)} {concert['date'].year}. {recommendation}"
 
 
 def print_concert_forecast(artist, concerts, weather_data):
@@ -113,7 +113,3 @@ def forecast_upcoming_concerts():
         print_concert_forecast(artist, concerts, weather_data)
     except Exception:
         print("Error while fetching concert forecast.")
-
-
-if __name__ == "__main__":
-    forecast_upcoming_concerts()
