@@ -11,9 +11,7 @@ from task_4_export_art_data import export_artists
 #reorganize the functions to that they are importing json in the same file, for example, to prevent repeeat imports
 
 def main():
-    menu = """Welcome to Mooziq!
-    Choose one of the options bellow:
-
+    menu = """
     1. Get All Artists
     2. Get All Albums By An Artist
     3. Get Top Tracks By An Artist
@@ -26,7 +24,7 @@ def main():
     10. Exit 
     """
     selection = ''
-
+    print('Welcome to Mooziq!\nChoose one of the options bellow:')
     while selection != '10':   
         print(menu)
         selection = input('Type your option: ')
