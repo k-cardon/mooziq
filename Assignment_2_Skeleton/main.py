@@ -5,6 +5,7 @@ from lyrics_search import search_lyrics
 # from longest_sequence import find_longest_sequence
 from task_2 import album_by_artist
 from task_5 import list_album_year
+from task_4_export_art_data import export_artists
 
 #add all our files to a folder, then import all the files in a single line with wildcard?
 #reorganize the functions to that they are importing json in the same file, for example, to prevent repeeat imports
@@ -38,7 +39,7 @@ def main():
             case '3':
                 show_top_tracks()
             case '4':
-                print('Export Artist Data')
+                export_artists()
             case '5':
                 list_album_year()
             case '6':
