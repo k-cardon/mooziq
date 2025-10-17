@@ -96,3 +96,5 @@ def album_by_artist():
     show_artists()
     name = input("Enter artist name: ").strip()
     show_albums(name)
+
+album_by_artist()
